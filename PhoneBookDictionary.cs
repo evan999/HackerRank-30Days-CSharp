@@ -3,28 +3,38 @@ using System.Collections.Generic;
 using System.IO;
 class Solution {
     static void Main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
-            string name, phoneNumber;
+
             int n;
 
-            n = Convert.ToInt32(Console.ReadLine());
+            n = int.Parse(Console.ReadLine());
 
-            Dictionary<string, string> phoneBook =
-                new Dictionary<string, string>();
+            
+            Dictionary<string, int> PhoneBook =
+                new Dictionary<string, int>();
+            
 
-            for (int entry = 0; entry < n; entry++)
+            for (int input = 0; input < n; input++)
             {
-                name = Console.ReadLine();
-                phoneNumber = Console.ReadLine();
-                phoneBook.Add(name, phoneNumber);
+                var entry = Console.ReadLine().Split(' ');
+                var name = entry[0];
+                var phoneNumber = int.Parse(entry[1]);
 
-                // Console.WriteLine(name + " " + phoneNumber);
-            }
+                PhoneBook.Add(name, phoneNumber);
+                Console.WriteLine(name + "=" + phoneNumber);
 
-            foreach (KeyValuePair<string, string> phoneEntry in phoneBook)
-            {
-                Console.WriteLine("{0}={1}", phoneEntry.Key, phoneEntry.Value);
+                /*
+                if (PhoneBook.ContainsKey(name))
+                {
+                    PhoneBook.Add(name, phoneNumber);
+                    Console.WriteLine(name + "=" + phoneNumber);
+                }  
+                else
+                {
+                    Console.WriteLine("Not found");
+                }
+                */
             }
         }
     }
+
 
