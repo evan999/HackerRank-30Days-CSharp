@@ -13,8 +13,8 @@ using System.Text;
 using System;
 
 class Solution {
-
-    static void Main(string[] args) {
+	
+	static void Main(string[] args) {
         int n = Convert.ToInt32(Console.ReadLine());
         List<int> binaryNumbers = new List<int>();
         int remainder;
@@ -26,42 +26,30 @@ class Solution {
             binaryNumbers.Insert(0, remainder);
         }
 
-        int consecutiveOnes = 0;
+        int counter = 0;
         int max = 0;
-        int num = 0;
-        bool isOne = false;
 
-        foreach (int digit in binaryNumbers)
+        for (int index = 0; index < binaryNumbers.Count; index++)
         {
-            num = digit;
-            if (num == 1)
+            if(binaryNumbers[index] == 1)
             {
-                if (isOne && num == 1)
-                {
-                    consecutiveOnes++;
-                }
-                else if (!isOne && num == 1)
-                {
-                    isOne = true;
-                    consecutiveOnes++;
-                    continue;
-                }                
-                else
-                {
-                    if (max < consecutiveOnes)
-                    {
-                        max = consecutiveOnes;
-                    }
-                    else
-                    {
-                        isOne = false;
-                        consecutiveOnes = 0;
-                        continue;
-                    }
-                }
+                counter++;
+                continue;
             }
-            Console.WriteLine("Digit " + digit);            
+            else
+            {
+                if (counter > max)
+                {
+                    max = counter;
+                }
+                counter = 0;
+            }
         }
-        Console.WriteLine("Ones: " + consecutiveOnes);        
+        if (counter > max)
+        {
+            max = counter;
+        }
+
+        Console.WriteLine(max); 
     }
 }
