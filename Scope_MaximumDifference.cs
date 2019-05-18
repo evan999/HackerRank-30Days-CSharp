@@ -4,22 +4,27 @@ using System.Linq;
 class Difference {
     private int[] elements;
     public int maximumDifference;
+    public int difference;
 
 	// Add your code here
-    public Difference(int[] nums){
-        elements = nums;
+    public Difference(int[] elements){
+        this.elements = elements;
     }
 
-    public int computeDifference(int[] elements){
-        for (int element = 0; element < elements.Length(); element++)
+    public void computeDifference(){
+        maximumDifference = 0;
+
+        for (int element = 0; element < elements.Length; element++)
         {
-            int absoluteElement = Math.Abs(elements[element]);
-            if (maximumDifference < absoluteDifference)
+            for (int secondElement = element + 1; secondElement < elements.Length; secondElement++)
             {
-                maximumDifference = absoluteDifference;
+                difference = Math.Abs(elements[element] - elements[secondElement]);
+                if (difference > maximumDifference)
+                {
+                    maximumDifference = difference;
+                }
             }
         }      
-        return maximumDifference;
     }
 
 } // End of Difference Class
